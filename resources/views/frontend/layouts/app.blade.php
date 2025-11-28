@@ -17,8 +17,11 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="{{ asset('assets/global/upload-preview/upload-preview.css') }}">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/dist/css/main.css') }}" />
+    @stack('styles')
 </head>
 
 <body>
@@ -162,9 +165,12 @@
     <script src="{{ asset('assets/frontend/dist/js/plugins/custom-parallax.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/plugins/leaflet.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/plugins/TweenMax.min.js') }}"></script>
+    <script src="{{ asset('assets/global/upload-preview/upload-preview.min.js') }}"></script>
     <!-- Template  JS -->
     <script src="{{ asset('assets/frontend/dist/js/main.js') }}"></script>
     <script src="{{ asset('assets/frontend/dist/js/shop.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
