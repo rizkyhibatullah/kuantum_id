@@ -454,7 +454,7 @@
                     <a href="./settings.html" class="dropdown-item">Settings</a>
                     <a onclick="event.preventDefault();
                         $('.logout-form').submit();" href="" class="dropdown-item">Logout</a>
-                    <form method="POST" action="{{ route('admin.logout') }}" class="logout-form">
+                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
                     @csrf
 
                     </form>

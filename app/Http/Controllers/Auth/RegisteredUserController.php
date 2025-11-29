@@ -47,6 +47,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        if(auth('web')->user()->user_type == 'vendor') return redirect(route('vendor.dashboard', absolute:false));
+
         return redirect(route('dashboard', absolute: false));
     }
 }

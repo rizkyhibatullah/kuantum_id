@@ -25,7 +25,7 @@
     <!-- END GLOBAL THEME SCRIPT -->
     <div class="page">
       <!--  BEGIN SIDEBAR  -->
-      @include('admin.layouts.sidebar')
+      @include('vendor-dashboard.layouts.sidebar')
       <!--  END SIDEBAR  -->
       <div class="page-wrapper">
         <!-- BEGIN PAGE BODY -->
