@@ -1,0 +1,3 @@
+
+// Datepicker init
+$(".datepicker").datepicker();

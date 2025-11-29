@@ -28,6 +28,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // menambahkan ?? 'web'
                 return redirect($this->redirectTo($request, $guard));
             }
         }
