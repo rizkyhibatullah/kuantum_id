@@ -1,32 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\AlertService;
-use App\Traits\FileUploadTrait;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Services\AlertService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
+use App\Traits\FileUploadTrait;
 
 class ProfileController extends Controller
 {
     use FileUploadTrait;
 
-    public function index(): View
+    function index() : View
     {
-        return view('frontend.dashboard.account.index');
+        return view('admin.profile.index');
     }
 
-    public function profileUpdate(Request $request): RedirectResponse
+    function profileUpdate(Request $request) : RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'email' => ['required', 'email', 'unique:users,email,'.auth('web')->user()->id],
-            'avatar' => ['nullable', 'image', 'max:2048'],
+            'email' => ['required', 'email', 'unique:admins,email,'. auth('admin')->user()->id],
+            'avatar' => ['nullable', 'image', 'max:2048']
         ]);
 
-        $user = auth('web')->user();
+
+        $user = auth('admin')->user();
         if ($request->hasFile('avatar')) {
             $filepath = $this->uploadFile($request->file('avatar'), $user->avatar);
             $filepath ? $user->avatar = $filepath : null;
@@ -47,7 +48,7 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $user = auth('web')->user();
+        $user = auth('admin')->user();
         $user->password = bcrypt($request->password);
         $user->save();
 
