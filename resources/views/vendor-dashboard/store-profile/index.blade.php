@@ -7,33 +7,33 @@
                 <h3 class="card-title">Update Profile</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.profile.update') }}" method="POST">
+                <form action="{{ route('vendor.store-profile.update', 1) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="" class="form-label">Logo</label>
-                                <x-input-image id="image-preview" name="avatar" />
+                                <x-input-image imageUploadId="image-upload" imagePreviewId="image-preview" imageLabelId="image-label" name="avatar" />
                                 <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="" class="form-label">Banner</label>
-                                <x-input-image id="image-preview" name="avatar" />
+                                <x-input-image imageUploadId="image-upload-two" imagePreviewId="image-preview-two" imageLabelId="image-label-two" name="avatar" />
                                 <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label required">Nama</label>
-                                <input type="text" class="form-control" name="name" placeholder="" value="">
-                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                            </div>
-                        </div>
                         <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label required">Alamat</label>
+                                    <input type="text" class="form-control" name="address" placeholder="" value="">
+                                    <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label required">Nomor Telepon</label>
                                 <input type="text" class="form-control" name="name" placeholder="" value="">
@@ -77,6 +77,14 @@
                 input_field: "#image-upload", // Default: .image-upload
                 preview_box: "#image-preview", // Default: .image-preview
                 label_field: "#image-label", // Default: .image-label
+                label_default: "Choose File", // Default: Choose File
+                label_selected: "Change File", // Default: Change File
+                no_label: false // Default: false
+            });
+            $.uploadPreview({
+                input_field: "#image-upload-two", // Default: .image-upload
+                preview_box: "#image-preview-two", // Default: .image-preview
+                label_field: "#image-label-two", // Default: .image-label
                 label_default: "Choose File", // Default: Choose File
                 label_selected: "Change File", // Default: Change File
                 no_label: false // Default: false
