@@ -17,7 +17,8 @@ class StoreController extends Controller
      */
     public function index() : View
     {
-        return view('vendor-dashboard.store-profile.index');
+        $store = auth('web')->user()?->store;
+        return view('vendor-dashboard.store-profile.index', compact('store'));
     }
 
     /**
@@ -78,10 +79,10 @@ class StoreController extends Controller
         ];
 
         if($request->hasFile('logo')){
-            $data['logo'] = $this->uploadFile($request->file('logo'));
+            $data['logo'] = $this->uploadFile($request->file('logo'), auth('web')->user()?->store?->logo);
         }
         if($request->hasFile('logo')){
-            $data['banner'] = $this->uploadFile($request->file('banner'));
+            $data['banner'] = $this->uploadFile($request->file('banner'), auth('web')->user()?->store->banner);
         }
 
         Store::updateOrCreate(

@@ -13,7 +13,7 @@ trait FileUploadTrait{
             return null;
         }
 
-        $ignorePath = ['/defaults/avatar.png'];
+        $ignorePath = ['/defaults/avatar.png', '/defaults/banner.jpg', '/defaults/shop.png'];
 
         if($oldPath && File::exists(public_path($oldPath)) && !in_array($oldPath, $ignorePath)){
             File::delete(public_path($oldPath));
