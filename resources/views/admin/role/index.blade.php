@@ -4,8 +4,9 @@
     <div class="container-xl">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Semua Permintaan KYC</h3>
+                <h3 class="card-title">Manajemen Role</h3>
                 <div class="card-actions">
+                    <a href="{{ route('admin.role.create') }}" class="btn btn-primary">Buat Role</a>
                 </div>
             </div>
             <div class="card-body p-0">
@@ -24,7 +25,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($kycRequests as $kycRequest )
+                            {{-- @foreach ($kycRequests as $kycRequest )
                                 <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$kycRequest->full_name}}</td>
@@ -42,12 +43,12 @@
                                     <a href="{{ route('admin.kyc.show', $kycRequest) }}">View</a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer">
-                    {{ $kycRequests->links() }}
+                    {{-- {{ $kycRequests->links() }} --}}
                   </div>
             </div>
         </div>
