@@ -6,7 +6,7 @@
             <div class="card-header">
                 <h3 class="card-title">Create Role</h3>
                 <div class="card-actions">
-                    <a href="{{ route('admin.role.create') }}" class="btn btn-primary">Create Role</a>
+                    <a href="{{ route('admin.role.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
             <div class="card-body">

@@ -266,6 +266,11 @@
                                     Manajemen Role
                                 </a>
                             </div>
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="{{ route('admin.role-users.index') }}">
+                                    Manajemen Role User
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
