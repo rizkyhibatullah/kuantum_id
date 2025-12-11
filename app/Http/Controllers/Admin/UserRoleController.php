@@ -7,16 +7,16 @@ use App\Models\Admin;
 use App\Services\AlertService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Nette\Utils\Paginator;
 use Spatie\Permission\Models\Role;
 
 class UserRoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index() : View
+    public function index(): View
     {
         $admins = Admin::all();
         return view('admin.role-user.index', compact('admins'));
@@ -25,7 +25,7 @@ class UserRoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         $roles = Role::all();
         return view('admin.role-user.create', compact('roles'));
@@ -34,7 +34,7 @@ class UserRoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -67,7 +67,7 @@ class UserRoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(admin $role_user) : View
+    public function edit(admin $role_user): View
     {
         $admin = $role_user;
         $roles = Role::all();
@@ -81,14 +81,14 @@ class UserRoleController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:admins,email,'. $role_user->id],
+            'email' => ['required', 'email', 'max:255', 'unique:admins,email,' . $role_user->id],
 
         ]);
 
         $admin = $role_user;
         $admin->name = $request->name;
         $admin->email = $request->email;
-        if($request->filled('password')){
+        if ($request->filled('password')) {
             $request->validate([
                 'password' => ['required', 'confirmed', 'min:8']
             ]);
@@ -109,17 +109,16 @@ class UserRoleController extends Controller
      */
     public function destroy(Admin $role_user)
     {
-        try{
-            foreach($role_user->getRoleNames() as $role){
+        try {
+            foreach ($role_user->getRoleNames() as $role) {
                 $role_user->removeRole($role);
             }
             $role_user->delete();
             AlertService::deleted();
             return response()->json(['status' => 'success', 'message' => 'Berhasil Dihapus']);
-        }catch(\Throwable $th){
+        } catch (\Throwable $th) {
             Log::error('Error Saat Menghapus Role: ', $th);
             return response()->json(['status' => 'error', 'message' => $th->getMessage()]);
-
         }
     }
 }

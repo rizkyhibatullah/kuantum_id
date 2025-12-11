@@ -227,6 +227,7 @@
                         <span class="nav-link-title"> Home </span>
                     </a>
                 </li>
+                @if(hasPermission(['KYC Management']))
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
@@ -251,6 +252,7 @@
                         </div>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
